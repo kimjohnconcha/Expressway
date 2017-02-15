@@ -5,6 +5,9 @@
  */
 package expressway;
 
+import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 /**
  *
  * @author kimjohnconcha
@@ -15,7 +18,9 @@ public class Expressway {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        JFrame mainFrame = new MainFrame();
+        mainFrame.setVisible(true);
+        mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     
 }
