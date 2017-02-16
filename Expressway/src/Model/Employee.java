@@ -101,4 +101,9 @@ public class Employee {
     private String firstname;
     private String middlename;
     private Position position;
+    
+    @Override
+    public String toString() {
+        return lastname + ", " + firstname + (middlename.length() > 0 ? " " + middlename.substring(0,1) + "." : "");
+    }
 }

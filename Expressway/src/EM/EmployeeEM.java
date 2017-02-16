@@ -21,8 +21,7 @@ public class EmployeeEM {
         this.con = con;
     }
     
-    public ArrayList<Employee> get() 
-    {
+    public ArrayList<Employee> get() {
         String query = "";
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -30,6 +29,17 @@ public class EmployeeEM {
         
         // Some Magic here
         
+        
+        return employee;
+    }
+    
+    public ArrayList<Employee> get(String criterion) {
+        String query = "";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Employee> employee = new ArrayList<>();
+        
+        // Some Magic here
         
         return employee;
     }
@@ -44,5 +54,37 @@ public class EmployeeEM {
         
         return row;
     }
+    
+    public int delete(String employeeCode) {
+        String query = "";
+        PreparedStatement ps = null;
+        int row = 0;
+        
+        // Some magic here
+        
+        return row;
+    }
+    
+    public Employee getEmployee(String employeeCode) {
+        String query = "";
+        PreparedStatement ps = null;
+        int row = 0;
+        Employee employee = new Employee();
+        
+        // Some magic here
+        
+        return employee;
+    }
+    
+    public int update(Employee employee, String oldCode) {
+        String query = "";
+        PreparedStatement ps = null;
+        int row = 0;
+        
+        // Some magic here
+        
+        return row;
+    }
+    
     
 }
