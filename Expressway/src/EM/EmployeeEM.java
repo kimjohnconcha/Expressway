@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author kimjohnconcha
+ * @author jude
  */
 public class EmployeeEM {
     private Connection con;
