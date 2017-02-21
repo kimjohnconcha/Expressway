@@ -39,8 +39,8 @@ public class Add extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cancel_addButton = new javax.swing.JButton();
+        save_addButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -95,17 +95,17 @@ public class Add extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setText("ADDING OF ENTRY");
 
-        jButton1.setText("CANCEL");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancel_addButton.setText("CANCEL");
+        cancel_addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancel_addButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("SAVE");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        save_addButton.setText("SAVE");
+        save_addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                save_addButtonActionPerformed(evt);
             }
         });
 
@@ -144,9 +144,9 @@ public class Add extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addGap(213, 213, 213))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(save_addButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)
+                                .addComponent(cancel_addButton)
                                 .addContainerGap())))))
         );
         layout.setVerticalGroup(
@@ -173,8 +173,8 @@ public class Add extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(cancel_addButton)
+                    .addComponent(save_addButton))
                 .addGap(19, 19, 19))
         );
 
@@ -185,18 +185,18 @@ public class Add extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_storagedemTextFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cancel_addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_addButtonActionPerformed
         // TODO add your handling code here:
         new Home().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cancel_addButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void save_addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_addButtonActionPerformed
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog("");
         new Home().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_save_addButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,14 +235,14 @@ public class Add extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField blnoTextField;
+    private javax.swing.JButton cancel_addButton;
     private javax.swing.JTextField containernoTextField;
     private javax.swing.JTextField entrynoTextField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton save_addButton;
     private javax.swing.JTextField sizenoTextField;
     private javax.swing.JTextField statusnoTextField;
     private javax.swing.JTextField storagedemTextField;

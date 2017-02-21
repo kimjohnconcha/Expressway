@@ -39,8 +39,8 @@ public class Update extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cancel_updateButton = new javax.swing.JButton();
+        update_updateButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -94,17 +94,17 @@ public class Update extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setText("UPDATING OF ENTRY");
 
-        jButton1.setText("CANCEL");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancel_updateButton.setText("CANCEL");
+        cancel_updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancel_updateButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("UPDATE");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        update_updateButton.setText("UPDATE");
+        update_updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                update_updateButtonActionPerformed(evt);
             }
         });
 
@@ -143,9 +143,9 @@ public class Update extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addGap(213, 213, 213))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(update_updateButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)
+                                .addComponent(cancel_updateButton)
                                 .addContainerGap())))))
         );
         layout.setVerticalGroup(
@@ -172,8 +172,8 @@ public class Update extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(cancel_updateButton)
+                    .addComponent(update_updateButton))
                 .addGap(19, 19, 19))
         );
 
@@ -184,18 +184,18 @@ public class Update extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_storagedemTextFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cancel_updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_updateButtonActionPerformed
         // TODO add your handling code here:
         new Home().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cancel_updateButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void update_updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_updateButtonActionPerformed
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog("");
         new Home().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_update_updateButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,10 +237,9 @@ public class Update extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField blnoTextField;
+    private javax.swing.JButton cancel_updateButton;
     private javax.swing.JTextField containernoTextField;
     private javax.swing.JTextField entrynoTextField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -248,5 +247,6 @@ public class Update extends javax.swing.JFrame {
     private javax.swing.JTextField sizenoTextField;
     private javax.swing.JTextField statusnoTextField;
     private javax.swing.JTextField storagedemTextField;
+    private javax.swing.JButton update_updateButton;
     // End of variables declaration//GEN-END:variables
 }
