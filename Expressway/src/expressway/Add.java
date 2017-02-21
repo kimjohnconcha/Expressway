@@ -49,7 +49,6 @@ public class Add extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\ACCOUNTING\\LETTERHEAD 2.jpg")); // NOI18N
 
         blnoTextField.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         blnoTextField.setText("BL #");

@@ -5,6 +5,7 @@
  */
 package expressway;
 
+import TestEmployeeCRUD.EmployeeMainFrame;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
@@ -18,7 +19,7 @@ public class Expressway {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame mainFrame = new MainFrame();
+        JFrame mainFrame = new EmployeeMainFrame(); //new MainFrame();
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

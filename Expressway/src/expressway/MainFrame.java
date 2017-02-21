@@ -145,7 +145,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        //this.setVisible(false);
+        this.dispose();
+        
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
