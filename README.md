@@ -1,2 +1,2 @@
 # Expressway
-Java app
+Java Desktop Application using NetBeans and MySQL DB
