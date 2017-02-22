@@ -7,10 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author kimjohnconcha
- */
+
 public class ConnectToDB {
     private String driver;
     private String url;

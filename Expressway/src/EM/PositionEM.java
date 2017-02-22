@@ -9,6 +9,7 @@ import Model.Position;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -23,13 +24,50 @@ public class PositionEM {
     
     public ArrayList<Position> get()
     {
-        String query = "";
+        String query = "SELECT * from position";
         PreparedStatement ps = null;
         ResultSet rs = null;
-        ArrayList<Position> position = new ArrayList<>();
+        ArrayList<Position> positions = new ArrayList<>();
         
-        // Some Magic here
-        
-        return position;
+        try {
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+            {
+                do 
+                {
+                    Position position = new Position();
+                    position.setPositionID(rs.getInt("position_id"));
+                    position.setPositionCode(rs.getString("position_code"));
+                    position.setPositionName(rs.getString("position_name"));
+                    
+                    positions.add(position);
+                
+                } while(rs.next());
+            }
+            
+        } catch(SQLException ex) {
+            System.out.println("Error " + ex.getMessage());
+        } finally {
+            if(ps != null)
+            {
+                try {
+                    ps.close();
+                } catch(SQLException ex) {
+                    System.out.println("Error " + ex.getMessage());
+                }
+            }
+            if(rs != null)
+            {
+               try {
+                    rs.close();
+                } catch(SQLException ex) {
+                    System.out.println("Error " + ex.getMessage());
+                } 
+            }
+            return positions;
+        }
+
     }
 }

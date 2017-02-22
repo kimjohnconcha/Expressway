@@ -19,7 +19,7 @@ public class Expressway {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame mainFrame = new EmployeeMainFrame(); //new MainFrame();
+        JFrame mainFrame = new MainFrame();
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

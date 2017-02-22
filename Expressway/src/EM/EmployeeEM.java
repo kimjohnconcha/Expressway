@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EM;
 
 import Model.Employee;
@@ -13,10 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author jude
- */
+
 public class EmployeeEM {
     private Connection con;
     public EmployeeEM(Connection con) {
@@ -24,7 +16,7 @@ public class EmployeeEM {
     }
     
     public ArrayList<Employee> get() {
-        String query = "";
+        String query = "SELECT * FROM employee INNER JOIN course WHERE employee.position_id=position.position_id";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Employee> employees = new ArrayList<>();
@@ -80,7 +72,17 @@ public class EmployeeEM {
     
     
     public ArrayList<Employee> get(String criterion) {
-        String query = "";
+        String query = "SELECT " +
+                        "* " +
+                "FROM employee " +
+                "INNER JOIN position ON employee.position_id=position.position_id " +
+                "WHERE employee.employee_code LIKE ? " +
+                "OR employee.last_name LIKE ? " +
+                "OR employee.first_name LIKE ?  " +
+                "OR employee.middle_name LIKE ? " +
+                "OR position.position_code LIKE ? " + 
+                "OR position.position_name LIKE ? ";
+        
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Employee> employees = new ArrayList<>();
@@ -145,7 +147,9 @@ public class EmployeeEM {
     }
     
     public int persist(Employee employee) {
-       String query = ""; 
+       String query = "INSERT INTO employee " +
+                      "(employee_code,last_name,first_name,middle_name,position_id) VALUES " +
+                      "(?            ,?        ,?         ,?          ,?          ) "; 
        
         PreparedStatement ps = null;
         int row = 0;
@@ -181,7 +185,7 @@ public class EmployeeEM {
     }
     
     public int delete(String employeeCode) {
-        String query = "";
+        String query = "DELETE FROM employee WHERE employee_code = ?";
         PreparedStatement ps = null;
         int row = 0;
         
@@ -211,7 +215,11 @@ public class EmployeeEM {
     }
     
     public Employee getEmployee(String employeeCode) {
-        String query = "";
+        String query = "SELECT " +
+                "* " +
+                "FROM employee " +
+                "INNER JOIN position ON employee.position_id=position.position_id " +
+                "WHERE position.position_code = ? LIMIT 1";
         
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -266,7 +274,12 @@ public class EmployeeEM {
     }
     
     public int update(Employee employee, String oldCode) {
-        String query = "";
+        String query = "UPDATE employee SET employee_code = ?, " +
+                "last_name = ?, " +
+                "first_name = ?, " +
+                "middle_name = ?, " +
+                "course_id = ?, " +
+                "WHERE employee_code = ?";
         PreparedStatement ps = null;
         int row = 0;
         

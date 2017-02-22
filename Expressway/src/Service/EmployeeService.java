@@ -1,18 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Service;
 
 import EM.EmployeeEM;
+import EM.PositionEM;
 import Model.Employee;
+import Model.Position;
 import Util.ConnectToDB;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -44,14 +43,14 @@ public class EmployeeService {
                 model.addRow(row);
             }
         } catch(Exception ex) {
-            Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error " + ex.getMessage());
         } finally {
             if (con != null)
             {
                 try {
                     con.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error " + ex.getMessage());
                 }
             }
             return model;
@@ -77,18 +76,94 @@ public class EmployeeService {
                 model.addRow(row);
             }
         } catch (Exception ex) {
-            Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error " + ex.getMessage());
         } finally {
             if(con != null)
             {
                 try {
                     con.close();
                 } catch(Exception ex) {
-                    Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error " + ex.getMessage());
                 }
             }
             
             return model;
         }
     }
+    
+    
+    public ComboBoxModel getPositionComboModel() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        
+        Connection con = null;
+        try {
+            con = connectToDB.getConnection();
+            ArrayList<Position> positions = new PositionEM(con).get();
+            
+            model.addElement("SELECT Position");
+            for (Position position : positions) {
+                model.addElement(position);
+            }
+        } catch (Exception ex) {
+             System.out.println("Error " + ex.getMessage());
+        } finally {
+            if (con != null)
+            {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                     System.out.println("Error " + ex.getMessage());
+                }
+            }
+            
+            return model;
+        }
+    }
+    
+    public boolean createEmployee(String code, String last, String mid, String first, Position position) {
+        boolean flag = false;
+       
+        Connection con = null;
+        try {
+            con = connectToDB.getConnection();
+            
+            Employee employee = new Employee();
+            employee.setEmployeeCode(code);
+            employee.setLastname(last);
+            employee.setFirstname(first);
+            employee.setMiddlename(mid);
+            employee.setPosition(position);
+            
+            int result = new EmployeeEM(con).persist(employee);
+            if (result != 0)
+            {
+                flag = true;
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    System.out.println("Error " + ex.getMessage());
+                }
+            }
+            
+            return flag;
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
