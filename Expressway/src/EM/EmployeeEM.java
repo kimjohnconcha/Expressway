@@ -16,7 +16,7 @@ public class EmployeeEM {
     }
     
     public ArrayList<Employee> get() {
-        String query = "SELECT * FROM employee INNER JOIN course WHERE employee.position_id=position.position_id";
+        String query = "SELECT * FROM employee INNER JOIN position WHERE employee.position_id=position.position_id";
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Employee> employees = new ArrayList<>();
@@ -278,7 +278,7 @@ public class EmployeeEM {
                 "last_name = ?, " +
                 "first_name = ?, " +
                 "middle_name = ?, " +
-                "course_id = ?, " +
+                "position_id = ?, " +
                 "WHERE employee_code = ?";
         PreparedStatement ps = null;
         int row = 0;

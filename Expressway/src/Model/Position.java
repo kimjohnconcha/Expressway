@@ -56,4 +56,27 @@ public class Position {
     private int positionID;
     private String positionCode;
     private String PositionName;
+    
+    @Override
+    public String toString()
+    {
+        return getPositionCode() + " - " + getPositionName();
+    }
+    
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj instanceof Position) {
+            return positionID == (((Position)obj).positionID);
+        } else {
+            return false;
+        } 
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + this.positionID;
+        return hash;
+    }
 }
