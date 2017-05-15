@@ -49,7 +49,7 @@ public class PositionEM {
             
         } catch(SQLException ex) {
             System.out.println("Error " + ex.getMessage());
-        } finally {
+        } finally { 
             if(ps != null)
             {
                 try {

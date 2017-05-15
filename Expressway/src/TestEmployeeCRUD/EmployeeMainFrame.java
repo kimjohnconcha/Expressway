@@ -107,6 +107,11 @@ public class EmployeeMainFrame extends javax.swing.JFrame {
         deleteButton.setText("DELETE");
 
         newButton.setText("NEW");
+        newButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newButtonActionPerformed(evt);
+            }
+        });
 
         closeButton.setText("CLOSE");
 
@@ -170,6 +175,13 @@ public class EmployeeMainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+        NewEmployeeDialog newEmployee = new NewEmployeeDialog(null, true);
+        newEmployee.setVisible(true);
+        searchTextField.setText("");
+        populateEmployeeTable();
+    }//GEN-LAST:event_newButtonActionPerformed
 
     /**
      * @param args the command line arguments

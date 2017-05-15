@@ -159,6 +159,32 @@ public class EmployeeService {
     
     
     
+    public Employee getEmployee(String employeeCode) {
+        Employee employee = new Employee();
+        
+        Connection con = null;
+        try {
+            con = connectToDB.getConnection();
+            employee = new EmployeeEM(con).getEmployee(employeeCode);
+            
+        }catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } finally {
+            if(con != null)
+            {
+                try {
+                    con.close();
+                } catch (Exception ex) {
+                    System.out.println("Error " + ex.getMessage());
+                }
+            }
+            return employee;
+        }
+        
+    }
+    
+    
+    
     
     
     
