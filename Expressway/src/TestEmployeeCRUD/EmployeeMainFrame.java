@@ -1,6 +1,7 @@
 package TestEmployeeCRUD;
 
 import Service.EmployeeService;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -58,6 +59,12 @@ public class EmployeeMainFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        searchTextField.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                searchTextFieldCaretUpdate(evt);
+            }
+        });
+
         searchLabel.setText("Search:");
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
@@ -105,6 +112,11 @@ public class EmployeeMainFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(employeeTable);
 
         deleteButton.setText("DELETE");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         newButton.setText("NEW");
         newButton.addActionListener(new java.awt.event.ActionListener() {
@@ -114,8 +126,18 @@ public class EmployeeMainFrame extends javax.swing.JFrame {
         });
 
         closeButton.setText("CLOSE");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
 
         editButton.setText("EDIT");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout buttonsPanelLayout = new javax.swing.GroupLayout(buttonsPanel);
         buttonsPanel.setLayout(buttonsPanelLayout);
@@ -182,6 +204,53 @@ public class EmployeeMainFrame extends javax.swing.JFrame {
         searchTextField.setText("");
         populateEmployeeTable();
     }//GEN-LAST:event_newButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+       if(employeeTable.getSelectedRow() >= 0)
+       {
+           String employeeName = (String) employeeTable.getModel().getValueAt(employeeTable.getSelectedRow(), 1);
+           int opt = JOptionPane.showConfirmDialog(null, "Do you want to delete " + employeeName + " ?", "Confirm Delete", 
+                   JOptionPane.YES_NO_OPTION);
+           if(opt == JOptionPane.YES_OPTION)
+           {
+               String employeeCode = (String) employeeTable.getModel().getValueAt(employeeTable.getSelectedRow(), 0);
+               boolean deleted = new EmployeeService().delete(employeeCode);
+               if (deleted)
+               {
+                   JOptionPane.showMessageDialog(null, employeeName +  " successfully deleted.");
+                   searchTextField.setText("");
+                   populateEmployeeTable();
+               }
+               else
+               {
+                   JOptionPane.showMessageDialog(null, "Failed to delete " + employeeName + ".\nError encountered.");
+               }
+           }
+       }
+       else
+       {
+           JOptionPane.showMessageDialog(null, "Select employee to delete.");
+       }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void searchTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTextFieldCaretUpdate
+        populateEmployeeTable();
+    }//GEN-LAST:event_searchTextFieldCaretUpdate
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+         System.exit(0);
+    }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        if(employeeTable.getSelectedRow() >= 0) {
+            String employeeCode = (String) employeeTable.getModel().getValueAt(employeeTable.getSelectedRow(), 0);
+            NewEmployeeDialog newEmployee = new NewEmployeeDialog(null, true, employeeCode);
+            newEmployee.setVisible(true);
+            
+            searchTextField.setText("");
+            populateEmployeeTable();
+        }
+    }//GEN-LAST:event_editButtonActionPerformed
 
     /**
      * @param args the command line arguments

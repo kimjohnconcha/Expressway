@@ -153,8 +153,34 @@ public class EmployeeService {
             
             return flag;
         }
-        
-        
+
+    }
+    
+    public boolean delete(String employeeCode) {
+         boolean flag = false;
+         
+         Connection con = null;
+         try {
+             con = connectToDB.getConnection();
+             
+             int result = new EmployeeEM(con).delete(employeeCode);
+             if(result != 0)
+             {
+                 flag = true;
+             }
+         } catch(Exception ex) {
+             System.out.println("Error " + ex.getMessage());
+         } finally {
+             if (con != null){
+                 try {
+                     con.close();
+                 } catch (Exception ex) {
+                     System.out.println("Error " + ex.getMessage());
+                 }
+             }
+             
+             return flag;
+         }
     }
     
     
@@ -184,12 +210,38 @@ public class EmployeeService {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
+    public boolean updateEmployee(String newCode, String last, String mid, String first, Position position, String oldCode) {
+        boolean flag = false;
+        
+        Connection con = null;
+        try {
+            con = connectToDB.getConnection();
+            
+            Employee employee = new Employee();
+            employee.setEmployeeCode(newCode);
+            employee.setLastname(last);
+            employee.setFirstname(first);
+            employee.setMiddlename(mid);
+            employee.setPosition(position);
+            
+            int result = new EmployeeEM(con).update(employee, oldCode);
+            if (result != 0)
+            {
+                flag = true;
+            }
+        } catch(Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch(Exception ex) {
+                    System.out.println("Error " + ex.getMessage());
+                }
+            }
+            
+            return flag;
+        }
+    }
     
 }

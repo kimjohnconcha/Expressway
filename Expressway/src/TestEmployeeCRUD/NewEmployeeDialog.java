@@ -1,10 +1,12 @@
 package TestEmployeeCRUD;
 
+import Model.*;
 import Service.EmployeeService;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +29,7 @@ public class NewEmployeeDialog extends javax.swing.JDialog {
     public NewEmployeeDialog(Object object, boolean b, String employeeCode) {
         this(null, b);
         this.currentEmployeeCode = employeeCode;
-        
+        System.out.println("here update dialog");
         populateWidget();
     }
 
@@ -55,8 +57,18 @@ public class NewEmployeeDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
@@ -187,6 +199,21 @@ public class NewEmployeeDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        if (currentEmployeeCode.isEmpty()) 
+        {
+            add();
+        }
+        else
+        {
+            update();
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -261,7 +288,38 @@ public class NewEmployeeDialog extends javax.swing.JDialog {
             positionLabel.setForeground(Color.black);
         }
         
-        //if()
+        if(firstTextField.getText().trim().isEmpty())
+        {
+            fNameLabel.setForeground(Color.red);
+            firstTextField.requestFocusInWindow();
+            flag = true;
+        }
+        else
+        {
+            fNameLabel.setForeground(Color.black);
+        }
+        
+        if(lastTextField.getText().trim().isEmpty())
+        {
+            lNameLabel.setForeground(Color.red);
+            lastTextField.requestFocusInWindow();
+            flag = true;
+        }
+        else
+        {
+            lNameLabel.setForeground(Color.black);
+        }
+        
+        if(codeTextField.getText().trim().isEmpty())
+        {
+            codeLabel.setForeground(Color.red);
+            codeTextField.requestFocusInWindow();
+            flag = true;
+        }
+        else
+        {
+            codeLabel.setForeground(Color.black);
+        }
         
         
         return flag;
@@ -269,30 +327,60 @@ public class NewEmployeeDialog extends javax.swing.JDialog {
 
 
     private void add() {
-
+        if(!badEntryFound())
+        {
+            String code = codeTextField.getText().trim();
+            String last = lastTextField.getText().trim();
+            String mid = middleTextField.getText().trim();
+            String first = firstTextField.getText().trim();
+            Position position = (Position) positionComboBox.getSelectedItem();
+            
+            boolean saved = new EmployeeService().createEmployee(code, last, mid, first, position);
+            
+            String msg;
+            if(saved)
+            {
+                msg = "New employee successfully saved.";
+                JOptionPane.showMessageDialog(null, msg);
+                this.dispose();
+            }
+            else
+            {
+                msg = "Failed to save new employee.";
+                JOptionPane.showMessageDialog(null, msg);
+            }
+        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    
+    private void update() {
+        if (!badEntryFound())
+        {
+            String newCode = codeTextField.getText().trim();
+            String last = lastTextField.getText().trim();
+            String mid = middleTextField.getText().trim();
+            String first = firstTextField.getText().trim();
+            Position position = (Position) positionComboBox.getSelectedItem();
+            
+            System.out.println("emp update " + currentEmployeeCode);
+            
+            boolean saved = new EmployeeService().updateEmployee(newCode, last, mid, first, position, currentEmployeeCode);
+            
+            String msg;
+            if (saved)
+            {
+                msg = "Changes successfully saved.";
+                JOptionPane.showMessageDialog(null, msg);
+                this.dispose();
+            }
+            else
+            {
+                msg = "Failed to save changes.";
+                JOptionPane.showMessageDialog(null, msg);
+            }
+            
+        }
+    }
 
 
     private void putDialogToCenter() {
@@ -311,13 +399,20 @@ public class NewEmployeeDialog extends javax.swing.JDialog {
     }
     
     private void populateWidget () {
-        Model.Employee employee = new EmployeeService().getEmployee(currentEmployeeCode);
+        Employee employee = new EmployeeService().getEmployee(currentEmployeeCode);
         
         codeTextField.setText(currentEmployeeCode);
         lastTextField.setText(employee.getLastname());
         middleTextField.setText(employee.getMiddlename());
         firstTextField.setText(employee.getFirstname());
         positionComboBox.setSelectedItem(employee.getPosition());
+        
+        System.out.println("here update dialog widget ");
+        System.out.println("1 " + currentEmployeeCode);
+        System.out.println("2 " + employee.getLastname());
+        System.out.println("3 " + employee.getMiddlename());
+        System.out.println("4 " + employee.getFirstname());
+        System.out.println("5 " + employee.getPosition());
     }
 
 

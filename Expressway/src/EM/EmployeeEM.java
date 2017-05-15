@@ -215,11 +215,12 @@ public class EmployeeEM {
     }
     
     public Employee getEmployee(String employeeCode) {
+        System.out.println("here get emplotee");
         String query = "SELECT " +
                 "* " +
                 "FROM employee " +
                 "INNER JOIN position ON employee.position_id=position.position_id " +
-                "WHERE position.position_code = ? LIMIT 1";
+                "WHERE employee.employee_code = ? LIMIT 1";
         
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -278,9 +279,13 @@ public class EmployeeEM {
                 "last_name = ?, " +
                 "first_name = ?, " +
                 "middle_name = ?, " +
-                "position_id = ?, " +
-                "WHERE employee_code = ?";
+                "position_id = ? " +
+                "WHERE employee_code = ? ";
+        
         PreparedStatement ps = null;
+        
+        System.out.println("Query " + query);
+        
         int row = 0;
         
         try {
@@ -293,6 +298,15 @@ public class EmployeeEM {
             ps.setString(i++, employee.getMiddlename());
             ps.setInt(i++, employee.getPosition().getPositionID());
             ps.setString(i++, oldCode);
+            
+//            System.out.println("q " + employee.getEmployeeCode());
+//            System.out.println("q " + employee.getLastname());
+//            System.out.println("q " + employee.getFirstname());
+//            System.out.println("q " + employee.getMiddlename());
+//            System.out.println("q " + employee.getPosition().getPositionID());
+//            System.out.println("q " + oldCode);
+             
+            
             
             row = ps.executeUpdate();
             
