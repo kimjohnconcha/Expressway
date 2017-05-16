@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2017 at 03:35 PM
+-- Generation Time: May 16, 2017 at 01:56 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -35,6 +35,15 @@ CREATE TABLE `employee` (
   `position_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`employee_id`, `employee_code`, `last_name`, `first_name`, `middle_name`, `position_id`) VALUES
+(1, '544', 'Elmo', 'Crow', 'Elmski', 1),
+(4, '1212', 'sdsdsd', 'sdsd', 'sdsd', 1),
+(5, '332', 'hahah', 'edited', 'yeag', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -43,9 +52,16 @@ CREATE TABLE `employee` (
 
 CREATE TABLE `position` (
   `position_id` int(11) NOT NULL,
-  `position_code` int(11) NOT NULL,
-  `position_name` int(11) NOT NULL
+  `position_code` varchar(11) NOT NULL,
+  `position_name` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `position`
+--
+
+INSERT INTO `position` (`position_id`, `position_code`, `position_name`) VALUES
+(1, '322', 'Manager');
 
 --
 -- Indexes for dumped tables
@@ -71,12 +87,12 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
